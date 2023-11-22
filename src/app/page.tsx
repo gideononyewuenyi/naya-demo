@@ -89,7 +89,10 @@ export default function Home() {
           <h2 className="font-bold text-lg">Prompt</h2>
         </div>
         <div className="p-4">
-          <code>{input}</code>
+          <code>
+            &#123;
+            <br /> {input} <br /> &#125;
+          </code>
         </div>
       </div>
     </main>
