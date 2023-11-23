@@ -106,7 +106,7 @@ export default function Home() {
       </div>
       {!useNaya && (
         <div
-          className={`fixed right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
+          className={`fixed overflow-y-scroll right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10  ${backgroundColor}`}
         >
           <div
             className="items-center flex p-4 rounded-md"
@@ -115,10 +115,10 @@ export default function Home() {
             <h2 className="font-bold text-lg">Prompt</h2>
           </div>
           <div className="p-4">
-            <code>
+            <div className="overflow-y-scroll">
               &#123;
               <br /> {input} <br /> &#125;
-            </code>
+            </div>
           </div>
         </div>
       )}

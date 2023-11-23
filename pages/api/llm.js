@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "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";
 import OpenAI from "openai";
 export default async function handler(req, res) {
   let body = JSON.parse(JSON.stringify(req.body));
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: body.query }],
+      messages: [{ role: "user", content: body.data }],
       max_tokens: 50,
       n: 1,
       stop: null,
