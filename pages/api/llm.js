@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "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";
 import OpenAI from "openai";
 export default async function handler(req, res) {
   let body = JSON.parse(JSON.stringify(req.body));
