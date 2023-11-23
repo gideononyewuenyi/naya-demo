@@ -6,24 +6,49 @@ import axios from "axios";
 export default function Home() {
   const [input, setInput] = useState<string>("");
   const [botResponse, setBotResponse] = useState<string>("");
+  const [botRedacted, setBotRedacted] = useState<string>("");
   const [useNaya, setUseNaya] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const backgroundColor = useNaya ? "bg-green-100" : "bg-red-100";
   function qryLLM() {
-    setLoading(true);
-    axios
-      .post("/api/llm", {
-        query: input,
-      })
-      .then(function (response) {
-        setBotResponse(response.data.choices[0].message.content);
-        setLoading(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-        setLoading(false);
-      });
+    if (!useNaya) {
+      setLoading(true);
+      axios
+        .post("/api/llm", {
+          data: input,
+        })
+        .then(function (response) {
+          setBotResponse(response.data.choices[0].message.content);
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+          setLoading(false);
+        });
+    } else {
+      // setLoading(true);
+      // setBotRedacted(
+      //   "<PERSON> am Teacher who lives at <STREET ADDRESS> in <LOCATION> and earns $3000 per month, how should I invest"
+      // );
+      // setBotResponse(
+      //   "As a teacher earning $3,000 per month, its crucial to have a sound investment"
+      // );
+      // setLoading(false);
+      axios
+        .post("http://localhost:8000/agent/process", {
+          data: input,
+        })
+        .then(function (response) {
+          setBotRedacted(response.data.choices[0].redacted_data);
+          setBotResponse(response.data.choices[0].message.content);
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+          setLoading(false);
+        });
+    }
   }
   return (
     <main className="flex h-full flex-col items-center justify-between p-24">
@@ -79,22 +104,56 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div
-        className={`fixed right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
-      >
+      {!useNaya && (
         <div
-          className="items-center flex p-4 rounded-md"
-          style={{ height: 50 }}
+          className={`fixed right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
         >
-          <h2 className="font-bold text-lg">Prompt</h2>
+          <div
+            className="items-center flex p-4 rounded-md"
+            style={{ height: 50 }}
+          >
+            <h2 className="font-bold text-lg">Prompt</h2>
+          </div>
+          <div className="p-4">
+            <code>
+              &#123;
+              <br /> {input} <br /> &#125;
+            </code>
+          </div>
         </div>
-        <div className="p-4">
-          <code>
-            &#123;
-            <br /> {input} <br /> &#125;
-          </code>
+      )}
+      {useNaya && (
+        <div
+          className={`fixed right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
+        >
+          <div
+            className="items-center flex p-4 rounded-md"
+            style={{ height: 50 }}
+          >
+            <h2 className="font-bold text-lg">Prompt</h2>
+          </div>
+          <div className="p-4">
+            <code>
+              &#123;
+              <br /> {input} <br /> &#125;
+            </code>
+          </div>
+          <hr />
+      
+          <div
+            className="items-center flex p-4 rounded-md"
+            style={{ height: 50 }}
+          >
+            <h2 className="font-bold text-lg">PII Redacted</h2>
+          </div>
+          <div className="p-4">
+            <code>
+              &#123;
+              <br /> {botRedacted} <br /> &#125;
+            </code>
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }
