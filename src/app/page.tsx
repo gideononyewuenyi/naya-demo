@@ -38,11 +38,6 @@ export default function Home() {
       axios
         .post("https://nayapp.azurewebsites.net/agent/process", {
           data: input,
-        }, {
-          headers: {
-            'Authorization': `Bearer ${process.env.API_KEY}`,
-            'Content-Type': 'application/json'
-          }
         })
         .then(function (response) {
           setBotRedacted(response.data.redacted_data);
