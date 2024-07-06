@@ -43,7 +43,7 @@ export default function Home() {
           setBotRedacted(response.data.redacted_data);
           // setBotRedacted(response.data.choices[0].redacted_data);
           // setBotResponse(response.data.choices[0].message.content);
-          setBotResponse(response.data.message.content);
+          setBotResponse(response.data.message);
           setLoading(false);
         })
         .catch(function (error) {
