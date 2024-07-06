@@ -55,7 +55,7 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full justify-between text-sm lg:flex h-full">
         <div className="rows-3 w-9/12 m-h-full">
           <div className="flex flex-row justify-between">
-            <h2 className="text-xl">Ask Payaza</h2>
+            <h2 className="text-xl">Agent Naya</h2>
             <div className="bauble_box flex items-center">
               <p>Use Naya</p>
               <input
