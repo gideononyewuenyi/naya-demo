@@ -1,12 +1,12 @@
 require('dotenv').config();
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.OPENAI_API_KEY;
 import OpenAI from "openai";
 export default async function handler(req, res) {
   let body = JSON.parse(JSON.stringify(req.body));
   if (req.method == "POST") {
     
     const openai = new OpenAI({
-      apiKey:API_KEY,
+      apiKey:OPENAI_API_KEY,
     });
 
     const response = await openai.chat.completions.create({
