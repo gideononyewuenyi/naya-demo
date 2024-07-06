@@ -36,7 +36,7 @@ export default function Home() {
       // );
       // setLoading(false);
       axios
-        .post("https://nayapp.azurewebsites.net/agent/process", {
+        .post("https://nayapp.azurewebsites.net/agent/process/", {
           data: input,
         })
         .then(function (response) {
