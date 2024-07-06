@@ -12,8 +12,9 @@ export default function Home() {
 
   const backgroundColor = useNaya ? "bg-green-100" : "bg-red-100";
   function qryLLM() {
+    setLoading(true);
     if (!useNaya) {
-      setLoading(true);
+      // setLoading(true);
       axios
         .post("/api/llm", {
           data: input,
