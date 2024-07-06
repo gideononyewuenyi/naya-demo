@@ -40,8 +40,8 @@ export default function Home() {
           data: input,
         })
         .then(function (response) {
-          setBotRedacted(response.data.redacted_data);
-          // setBotRedacted(response.data.choices[0].redacted_data);
+          // setBotRedacted(response.data.redacted_data);
+          setBotRedacted(response.data.choices[0].redacted_data);
           setBotResponse(response.data.choices[0].message.content);
           setLoading(false);
         })
