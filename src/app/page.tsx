@@ -41,9 +41,11 @@ export default function Home() {
         })
         .then(function (response) {
           // setBotRedacted(response.data.redacted_data);
-          setBotRedacted(response.data.choices[0].redacted_data);
-          setBotResponse(response.data.choices[0].message.content);
-          // setBotResponse(response.data.message);
+          // setBotRedacted(response.data.choices[0].redacted_data);
+          // setBotResponse(response.data.choices[0].message.content);
+          const messageContent = response.data.gpt_response.choices[0].message.content;
+          setBotRedacted(response.data.redacted_data);
+          setBotResponse(messageContent);
           setLoading(false);
         })
         .catch(function (error) {
