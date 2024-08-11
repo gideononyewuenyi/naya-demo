@@ -56,9 +56,9 @@ export default function Home() {
     }
   }
   return (
-    <main className="flex h-full flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full justify-between text-sm lg:flex h-full">
-        <div className="rows-3 w-9/12 m-h-full">
+    <main className="lg:flex h-full flex-col items-center justify-between lg:p-24 p-6">
+      <div className="z-10 max-w-5xl w-full justify-between text-sm lg:flex lg:h-full">
+        <div className="rows-3 lg:w-9/12 lg:m-h-full">
           <div className="flex flex-row justify-between">
             <h2 className="text-xl">Agent Naya</h2>
             <div className="bauble_box flex items-center">
@@ -111,7 +111,7 @@ export default function Home() {
       </div>
       {!useNaya && (
         <div
-          className={`fixed overflow-y-scroll right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10  ${backgroundColor}`}
+          className={`lg:fixed lg:mt-0 mt-6 overflow-y-scroll right-20 top-20 lg:w-72 w-full h-auto shadow-lg rounded-md border border-slate-300 z-10  ${backgroundColor}`}
         >
           <div
             className="items-center flex p-4 rounded-md"
