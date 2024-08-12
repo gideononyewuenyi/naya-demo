@@ -95,6 +95,7 @@ export default function Home() {
           <textarea
             className="flex-1 border-gray-300 focus:border-gray-500 p-2 w-full bg-slate-50 my-4"
             rows={5}
+            placeholder="Type your message"
             onChange={(event) => {
               setInput(event.target.value);
             }}
@@ -129,7 +130,7 @@ export default function Home() {
       )}
       {useNaya && (
         <div
-          className={`fixed right-20 top-20 w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
+          className={`lg:fixed right-20 lg:mt-0 mt-6 top-20 lg:w-72 h-auto shadow-lg rounded-md border border-slate-300 z-10 ${backgroundColor}`}
         >
           <div
             className="items-center flex p-4 rounded-md"
